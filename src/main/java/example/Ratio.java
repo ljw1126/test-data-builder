@@ -1,13 +1,13 @@
 package example;
 
 public class Ratio {
-    private int ratio;
+    private double ratio;
 
-    public Ratio(int ratio) {
+    public Ratio(double ratio) {
         this.ratio = ratio;
     }
 
-    public static Ratio from(int value) {
+    public static Ratio from(double value) {
         return new Ratio(value);
     }
 
@@ -15,7 +15,7 @@ public class Ratio {
         return new Ratio(this.ratio + other.ratio);
     }
 
-    public int getRatio() {
+    public double getRatio() {
         return ratio;
     }
 

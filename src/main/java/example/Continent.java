@@ -23,7 +23,6 @@ public class Continent {
         this.nations = nations;
     }
 
-
     public Money getPrice() {
         Money result = Money.wons(0);
         for(Nation each : nations) {
