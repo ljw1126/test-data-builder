@@ -13,6 +13,15 @@ class PriceSpecificationTest {
     @DisplayName("행성의 실제 제조 가격이 생쥐들이 제시한 계약 금액보다 작다")
     @Test
     void price() {
+        Planet planet = createPlanet();
+
+        PriceSpecification specification = new PriceSpecification(Money.wons(9000));
+
+        assertThat(specification.isSatisfiedBy(planet)).isTrue();
+    }
+
+    // 생성 메서드 (CREATION METHOD)
+    private Planet createPlanet() {
         Atomsphere atomsphere = new Atomsphere(Money.wons(5000),
                 new Element("N", Ratio.from(0.8)),
                 new Element("O", Ratio.from(0.2)));
@@ -24,9 +33,6 @@ class PriceSpecificationTest {
                 new Ocean("대서양", Money.wons(1000)));
 
         Planet planet = new Planet(atomsphere, continents, oceans);
-
-        PriceSpecification specification = new PriceSpecification(Money.wons(9000));
-
-        assertThat(specification.isSatisfiedBy(planet)).isTrue();
+        return planet;
     }
 }
