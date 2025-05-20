@@ -14,6 +14,10 @@ public class Element {
         return new Element(name, ratio);
     }
 
+    public static Element element(String name, Ratio from) {
+        return new Element(name, from);
+    }
+
     public String getName() {
         return name;
     }

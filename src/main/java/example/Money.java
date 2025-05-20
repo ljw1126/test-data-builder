@@ -1,13 +1,13 @@
 package example;
 
 public class Money {
-    private int value;
+    private long value;
 
-    public Money(int value) {
+    public Money(long value) {
         this.value = value;
     }
 
-    public static Money wons(int value) {
+    public static Money wons(long value) {
         return new Money(value);
     }
 
