@@ -1,9 +1,6 @@
 package example2;
 
-import example2.builder.AddressBuilder;
-import example2.builder.CustomerBuilder;
 import example2.builder.OrderBuilder;
-import example2.builder.OrderItemBuilder;
 import example2.objectmother.Addresses;
 import example2.objectmother.Customers;
 import example2.objectmother.OrderItems;
@@ -44,8 +41,8 @@ public class OrderTest {
     @DisplayName("Test Data Builder 패턴으로 리팩터링하여 Order 생성할 수 있다")
     @Test
     void constructOrderWithTestDataBuilderPattern() {
-        Order order = aOrder().withId(1L)
-                            .withCustomer(
+        Order order = aOrder().with(1L)
+                            .with(
                                 aCustomer()
                                     .withId(1L)
                                     .withName("Terry Tew")
@@ -57,7 +54,7 @@ public class OrderTest {
                                             .withCountry("United States")
                                             .build())
                                     .build())
-                            .withOrderItems(aOrderItem()
+                            .with(aOrderItem()
                                     .withName("Coffee mug")
                                     .withQuantity(1)
                                     .build())
@@ -70,8 +67,8 @@ public class OrderTest {
     @Test
     void constructOrderWithTestDataBuilderPattern2() {
         Order order = aOrder()
-                .withCustomer(aCustomer().withAddress(address().withCountry("United States").build()).build())
-                .withOrderItems(aOrderItem()
+                .with(aCustomer().withAddress(address().withCountry("United States").build()).build())
+                .with(aOrderItem()
                         .withName("Coffee mug")
                         .withQuantity(1)
                         .build())
@@ -84,12 +81,23 @@ public class OrderTest {
     @Test
     void constructOrderWithTestDataBuilderPattern3() {
         Order order = aOrder()
-                .withCustomer(aCustomer().withAddress(address().withCountry("United States")))
-                .withOrderItems(aOrderItem()
+                .with(aCustomer().withAddress(address().withCountry("United States")))
+                .with(aOrderItem()
                         .withName("Coffee mug")
                         .withQuantity(1))
                 .build();
 
         // do something
+    }
+
+    @DisplayName("but()으로 복사하게 되면 다음 객체 생성시 이전 객체에서 설정한 할인률이 반영되지 않는다")
+    @Test
+    void but() {
+        OrderBuilder coffeeMugAndTeaCup = aOrder()
+                .with(aOrderItem().withName("Coffee mug").withQuantity(1))
+                .with(aOrderItem().withName("Tea cup").withQuantity(1));
+
+        Order orderWithDiscount = coffeeMugAndTeaCup.but().with(0.1).build();
+        Order orderWithCouponCode = coffeeMugAndTeaCup.but().with("HALFOFF").build();
     }
 }

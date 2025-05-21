@@ -20,45 +20,57 @@ public class OrderBuilder {
 
     private OrderBuilder() {}
 
+    private OrderBuilder(OrderBuilder copy) {
+        this.orderId = copy.orderId;
+        this.customer = copy.customer;
+        this.orderItems = copy.orderItems;
+        this.discountRate = copy.discountRate;
+        this.couponCode = copy.couponCode;
+    }
+
     public static OrderBuilder aOrder() {
         return new OrderBuilder();
     }
 
-    public OrderBuilder withId(Long orderId) {
+    public OrderBuilder but() {
+        return new OrderBuilder(this);
+    }
+
+    public OrderBuilder with(Long orderId) {
         this.orderId = orderId;
         return this;
     }
 
     @Deprecated
-    public OrderBuilder withCustomer(Customer customer) {
+    public OrderBuilder with(Customer customer) {
         this.customer = customer;
         return this;
     }
 
-    public OrderBuilder withCustomer(CustomerBuilder customer) {
+    public OrderBuilder with(CustomerBuilder customer) {
         this.customer = customer.build();
         return this;
     }
 
     @Deprecated
-    public OrderBuilder withOrderItems(OrderItem... orderItems) {
+    public OrderBuilder with(OrderItem... orderItems) {
         this.orderItems.addAll(Arrays.asList(orderItems));
         return this;
     }
 
-    public OrderBuilder withOrderItems(OrderItemBuilder... orderItems) {
+    public OrderBuilder with(OrderItemBuilder... orderItems) {
         for(OrderItemBuilder each : orderItems) {
             this.orderItems.add(each.build());
         }
         return this;
     }
 
-    public OrderBuilder withDiscountRate(Double discountRate) {
+    public OrderBuilder with(Double discountRate) {
         this.discountRate = discountRate;
         return this;
     }
 
-    public OrderBuilder withCouponCode(String couponCode) {
+    public OrderBuilder with(String couponCode) {
         this.couponCode = couponCode;
         return this;
     }
