@@ -79,4 +79,17 @@ public class OrderTest {
 
         // do something
     }
+
+    @DisplayName("Builder를 인자로 전달하여 build() 호출을 생략할 수 있다")
+    @Test
+    void constructOrderWithTestDataBuilderPattern3() {
+        Order order = aOrder()
+                .withCustomer(aCustomer().withAddress(address().withCountry("United States")))
+                .withOrderItems(aOrderItem()
+                        .withName("Coffee mug")
+                        .withQuantity(1))
+                .build();
+
+        // do something
+    }
 }

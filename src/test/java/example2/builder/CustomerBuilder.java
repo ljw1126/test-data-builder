@@ -22,8 +22,14 @@ public class CustomerBuilder {
         return this;
     }
 
+    @Deprecated
     public CustomerBuilder withAddress(Address address) {
         this.address = address;
+        return this;
+    }
+
+    public CustomerBuilder withAddress(AddressBuilder address) {
+        this.address = address.build();
         return this;
     }
 

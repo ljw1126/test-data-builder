@@ -27,13 +27,27 @@ public class OrderBuilder {
         return this;
     }
 
+    @Deprecated
     public OrderBuilder withCustomer(Customer customer) {
         this.customer = customer;
         return this;
     }
 
+    public OrderBuilder withCustomer(CustomerBuilder customer) {
+        this.customer = customer.build();
+        return this;
+    }
+
+    @Deprecated
     public OrderBuilder withOrderItems(OrderItem... orderItems) {
         this.orderItems.addAll(Arrays.asList(orderItems));
+        return this;
+    }
+
+    public OrderBuilder withOrderItems(OrderItemBuilder... orderItems) {
+        for(OrderItemBuilder each : orderItems) {
+            this.orderItems.add(each.build());
+        }
         return this;
     }
 
