@@ -8,6 +8,8 @@ public class CustomerBuilder {
     private String name;
     private Address address;
 
+    private CustomerBuilder() {}
+
     public static CustomerBuilder aCustomer() {
         return new CustomerBuilder();
     }

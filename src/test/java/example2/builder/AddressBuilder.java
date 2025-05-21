@@ -8,6 +8,8 @@ public class AddressBuilder {
     private String postalCode = "Some postal code";
     private String country = "Some country";
 
+    private AddressBuilder(){}
+
     public static AddressBuilder address() {
         return new AddressBuilder();
     }

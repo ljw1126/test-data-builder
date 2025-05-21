@@ -6,6 +6,8 @@ public class OrderItemBuilder {
     private String name;
     private int quantity;
 
+    private OrderItemBuilder() {}
+
     public static OrderItemBuilder aOrderItem() {
         return new OrderItemBuilder();
     }

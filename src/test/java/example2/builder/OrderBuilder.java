@@ -18,6 +18,8 @@ public class OrderBuilder {
     private Double discountRate = 0.0;
     private String couponCode;
 
+    private OrderBuilder() {}
+
     public static OrderBuilder aOrder() {
         return new OrderBuilder();
     }
