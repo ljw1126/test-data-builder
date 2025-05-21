@@ -3,10 +3,10 @@ package example2.builder;
 import example2.Address;
 
 public class AddressBuilder {
-    private String street;
-    private String city;
-    private String postalCode;
-    private String country;
+    private String street = "Some street";
+    private String city = "Some city";
+    private String postalCode = "Some postal code";
+    private String country = "Some country";
 
     public static AddressBuilder address() {
         return new AddressBuilder();

@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static example2.builder.CustomerBuilder.*;
+
 // Test Data Builder Pattern, 기본값 설정 가능
 public class OrderBuilder {
-    private Long orderId;
-    private Customer customer;
+    private Long orderId = 1L;
+  private Customer customer = aCustomer().build();
     private List<OrderItem> orderItems = new ArrayList<>();
-    private Double discountRate;
+    private Double discountRate = 0.0;
     private String couponCode;
 
     public static OrderBuilder aOrder() {

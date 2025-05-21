@@ -44,24 +44,38 @@ public class OrderTest {
     @DisplayName("Test Data Builder 패턴으로 리팩터링하여 Order 생성할 수 있다")
     @Test
     void constructOrderWithTestDataBuilderPattern() {
-    Order order = aOrder().withId(1L)
-                        .withCustomer(
-                            aCustomer()
-                                .withId(1L)
-                                .withName("Terry Tew")
-                                .withAddress(
-                                    address()
-                                        .withStreet("1216  Clinton Street")
-                                        .withCity("Philadelphia")
-                                        .withPostalCode("19108")
-                                        .withCountry("United States")
-                                        .build())
-                                .build())
-                        .withOrderItems(aOrderItem()
-                                .withName("Coffee mug")
-                                .withQuantity(1)
-                                .build())
-                        .build();
+        Order order = aOrder().withId(1L)
+                            .withCustomer(
+                                aCustomer()
+                                    .withId(1L)
+                                    .withName("Terry Tew")
+                                    .withAddress(
+                                        address()
+                                            .withStreet("1216  Clinton Street")
+                                            .withCity("Philadelphia")
+                                            .withPostalCode("19108")
+                                            .withCountry("United States")
+                                            .build())
+                                    .build())
+                            .withOrderItems(aOrderItem()
+                                    .withName("Coffee mug")
+                                    .withQuantity(1)
+                                    .build())
+                            .build();
+
+        // do something
+    }
+
+    @DisplayName("Test Data Builder 클래스에 기본값을 설정하여 테스트에 불필요한 세부사항을 감출 수 있다")
+    @Test
+    void constructOrderWithTestDataBuilderPattern2() {
+        Order order = aOrder()
+                .withCustomer(aCustomer().withAddress(address().withCountry("United States").build()).build())
+                .withOrderItems(aOrderItem()
+                        .withName("Coffee mug")
+                        .withQuantity(1)
+                        .build())
+                .build();
 
         // do something
     }
