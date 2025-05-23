@@ -9,12 +9,24 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 // https://github.com/junit-team/junit5-samples/blob/r5.12.2/junit5-jupiter-starter-gradle/build.gradle
 dependencies {
     testImplementation(platform('org.junit:junit-bom:5.12.2'))
     testImplementation('org.junit.jupiter:junit-jupiter')
     testRuntimeOnly('org.junit.platform:junit-platform-launcher')
     testImplementation("org.assertj:assertj-core:3.27.3")
+
+    implementation("com.navercorp.fixturemonkey:fixture-monkey-starter:1.1.11")
+    testImplementation("org.slf4j:slf4j-simple:2.0.16")
+
+    compileOnly('org.projectlombok:lombok:1.18.22')
+    annotationProcessor('org.projectlombok:lombok:1.18.22')
 }
 
 test {
